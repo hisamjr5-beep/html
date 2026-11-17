@@ -1,0 +1,31 @@
+
+<html>
+<head>
+    <title> change Background Color </title>
+</head>
+<body>
+<center>
+    <h2><i>Click the button to change background color!</i></h2>
+
+    <button id="colorBtn">Click here....</button>
+
+    <script>
+        const button = document.getElementById("colorBtn");
+
+        const colors = ["red", "blue", "green", "yellow", "pink", "orange"];
+
+        let index = 0;
+
+        button.addEventListener("click", function() {
+            document.body.style.backgroundColor = colors[index];
+
+            index++;
+
+            if (index === colors.length) {
+                index = 0;
+            }
+        });
+    </script>
+</cneter>
+</body>
+</html>
