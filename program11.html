@@ -1,0 +1,167 @@
+<html>
+<head>
+<title>Exam</title>
+<style>
+body {
+    background: white;
+    text-align: center;
+    font-family: Arial;
+}
+form {
+    background: grey;
+    width: 750px;
+    margin: 60px auto;
+    padding: 40px;
+    border-radius: 10px;
+}
+h2 {
+    color: white;
+}
+.question {
+    text-align: left;
+    margin: 15px;
+}
+input[type="submit"] {
+    background: white;
+    color: grey;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<form onsubmit="return checkAnswer()">
+
+<h2>series test</h2>
+<h3 id="timer">Time Left: 01:00</h3>
+
+<div class="question">
+<p>1. Which planet is known as the Red Planet?</p>
+<input type="radio" name="q1" value="Earth"> A. Earth<br>
+<input type="radio" name="q1" value="Mars"> B. Mars<br>
+<input type="radio" name="q1" value="Venus"> C. Venus<br>
+<input type="radio" name="q1" value="Jupiter"> D. Jupiter<br>
+</div>
+
+<div class="question">
+<p>2. Which gas do plants absorb from the atmosphere?</p>
+<input type="radio" name="q2" value="Oxygen"> A. Oxygen<br>
+<input type="radio" name="q2" value="Nitrogen"> B. Nitrogen<br>
+<input type="radio" name="q2" value="Carbon Dioxide"> C. Carbon Dioxide<br>
+<input type="radio" name="q2" value="Hydrogen"> D. Hydrogen<br>
+</div>
+
+<div class="question">
+<p>3. What is the main source of energy for Earth?</p>
+<input type="radio" name="q3" value="Moon"> A. Moon<br>
+<input type="radio" name="q3" value="Sun"> B. Sun<br>
+<input type="radio" name="q3" value="Stars"> C. Stars<br>
+<input type="radio" name="q3" value="Wind"> D. Wind<br>
+</div>
+
+<div class="question">
+<p>4. Which is the largest animal on Earth?</p>
+<input type="radio" name="q4" value="Elephant"> A. Elephant<br>
+<input type="radio" name="q4" value="Blue Whale"> B. Blue Whale<br>
+<input type="radio" name="q4" value="Giraffe"> C. Giraffe<br>
+<input type="radio" name="q4" value="Shark"> D. Shark<br>
+</div>
+
+<div class="question">
+<p>5. What is the process by which plants make food?</p>
+<input type="radio" name="q5" value="Photosynthesis"> A. Photosynthesis<br>
+<input type="radio" name="q5" value="Respiration"> B. Respiration<br>
+<input type="radio" name="q5" value="Digestion"> C. Digestion<br>
+<input type="radio" name="q5" value="Transpiration"> D. Transpiration<br>
+</div>
+
+<div class="question">
+<p>6. Which part of the plant absorbs water?</p>
+<input type="radio" name="q6" value="Leaves"> A. Leaves<br>
+<input type="radio" name="q6" value="Roots"> B. Roots<br>
+<input type="radio" name="q6" value="Flowers"> C. Flowers<br>
+<input type="radio" name="q6" value="Stem"> D. Stem<br>
+</div>
+
+<div class="question">
+<p>7. How many planets are there in our solar system?</p>
+<input type="radio" name="q7" value="7"> A. 7<br>
+<input type="radio" name="q7" value="8"> B. 8<br>
+<input type="radio" name="q7" value="9"> C. 9<br>
+<input type="radio" name="q7" value="10"> D. 10<br>
+</div>
+
+<div class="question">
+<p>8. Which gas do humans need to breathe?</p>
+<input type="radio" name="q8" value="Oxygen"> A. Oxygen<br>
+<input type="radio" name="q8" value="Carbon Dioxide"> B. Carbon Dioxide<br>
+<input type="radio" name="q8" value="Hydrogen"> C. Hydrogen<br>
+<input type="radio" name="q8" value="Nitrogen"> D. Nitrogen<br>
+</div>
+
+<div class="question">
+<p>9. What is the boiling point of water at sea level?</p>
+<input type="radio" name="q9" value="50°C"> A. 50°C<br>
+<input type="radio" name="q9" value="100°C"> B. 100°C<br>
+<input type="radio" name="q9" value="150°C"> C. 150°C<br>
+<input type="radio" name="q9" value="200°C"> D. 200°C<br>
+</div>
+
+<div class="question">
+<p>10. Which is the nearest star to Earth?</p>
+<input type="radio" name="q10" value="Sirius"> A. Sirius<br>
+<input type="radio" name="q10" value="Sun"> B. Sun<br>
+<input type="radio" name="q10" value="Polaris"> C. Polaris<br>
+<input type="radio" name="q10" value="Vega"> D. Vega<br>
+</div>
+
+<div class="question">
+
+<br>
+
+<input type="submit" value="Submit">
+
+<h3 id="result"></h3>
+
+</form>
+
+<script>
+var time = 60;
+var submitted = false;
+var timer = setInterval(function() {
+    var min = Math.floor(time / 60);
+    var sec = time % 60;
+    document.getElementById("timer").innerHTML =
+    "Time Left: " + min + ":" + (sec < 10 ? "0" : "") + sec;
+    time--;
+    if (time < 0) {
+        clearInterval(timer);
+        alert("Time is up!");
+        checkAnswer();
+    }
+}, 1000);
+function checkAnswer() {
+ if (submitted) return false;
+    submitted = true;
+    clearInterval(timer);
+    var answers = ["Mars","Carbon Dioxide","Sun","Blue Whale","Photosynthesis","Roots","Oxygen","100°C","Sun"];
+        var score = 0;
+       for (var i = 1; i <= 10; i++) {
+        var q = document.querySelector('input[name="q' + i + '"]:checked');
+
+        if (q && q.value == answers[i-1]) {
+            score++;
+        }
+    }
+     document.getElementById("result").innerHTML =
+    "Exam submitted successfully!<br>Marks obtained: " + score + "/10";
+
+    return false;
+}
+</script>
+
+</body>
+</html>
